@@ -1,8 +1,8 @@
 [core]
 	editor = emacs
 [user]
-	name = Matthew Brett
-	email = matthew.brett@gmail.com
+	name = Anwar Nunez-Elizalde
+	email = anwarnunez@gmail.com
 [alias]
 	st = status
         stat = status
