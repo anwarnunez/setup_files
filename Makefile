@@ -8,7 +8,6 @@ DOTFILES = bash_personal bash_utils gitconfig noserc gnomerc hgrc git-completion
 dotfiles: backup_directory
 	for filename in $(DOTFILES); do \
 	cp -rf $(HOME)/.$${filename} $(DOTBACKUP)/$${filename}; \
-	rm -rf $(HOME)/.$${filename} \
 	cp -rf dotfiles/$${filename} $(HOME)/.$${filename}; \
 	done ;
 
