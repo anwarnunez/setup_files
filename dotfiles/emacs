@@ -1,7 +1,10 @@
 ;; Add .emacs.d to the load path
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; Contains the R highlighting
+(require 'ess-site) ;; enable R highlighting
 
-;; Add local lisp folder to load-path
+
+;; Add local folder to load-path
 ;; (setq load-path (append load-path (list "~/.emacs_addons")))
 
 ;; Set up matlab-mode to load on .m files
