@@ -20,9 +20,9 @@
 (set-foreground-color "white")
 
 ;; Set the font type and size
-(set-face-attribute 'default nil :font "-schumacher-clean-medium-r-normal--10-100-75-75-c-80-iso646.1991-irv")
-;; (set-face-attribute 'default nil :font "-misc-fixed-medium-r-normal--10-100-75-75-C-100-ISO8859-1")
-
+;; (set-face-attribute 'default nil :font "-schumacher-clean-medium-r-normal--10-100-75-75-c-80-iso646.1991-irv")
+;; (set-face-attribute 'default nil :font "-misc-fixed-medium-r-normal--7-100-75-75-C-65-ISO8859-1")
+(set-face-attribute 'default nil :font "MiscFixed-8")
 
 (defun what-face (pos)
   (interactive "d")
