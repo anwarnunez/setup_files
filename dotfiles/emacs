@@ -3,15 +3,6 @@
 (add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; Contains the R highlighting
 (require 'ess-site) ;; enable R highlighting
 
-;; Basic call: this will get the system running in default mode.
-(require 'ipython)
-
-;; Set the ipython command manually if emacs can't find it on the system
-;;(setq ipython-command "/home/fperez/usr/bin/ipython")
-
-;; Configure the ipython call for pylab use
-;;(setq py-python-command-args '("-pylab" "--colors" "LightBG"))
-(setq py-python-command-args '("-pylab"))
 
 ;; Add local folder to load-path
 ;; (setq load-path (append load-path (list "~/.emacs_addons")))
@@ -31,7 +22,7 @@
 ;; Set the font type and size
 ;; (set-face-attribute 'default nil :font "-schumacher-clean-medium-r-normal--10-100-75-75-c-80-iso646.1991-irv")
 ;; (set-face-attribute 'default nil :font "-misc-fixed-medium-r-normal--7-100-75-75-C-65-ISO8859-1")
-(set-face-attribute 'default nil :font "MiscFixed-8")
+;; (set-face-attribute 'default nil :font "MiscFixed-8")
 
 (defun what-face (pos)
   (interactive "d")
@@ -52,5 +43,5 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
