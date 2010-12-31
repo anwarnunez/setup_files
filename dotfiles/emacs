@@ -3,6 +3,15 @@
 (add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; Contains the R highlighting
 (require 'ess-site) ;; enable R highlighting
 
+;; Basic call: this will get the system running in default mode.
+(require 'ipython)
+
+;; Set the ipython command manually if emacs can't find it on the system
+;;(setq ipython-command "/home/fperez/usr/bin/ipython")
+
+;; Configure the ipython call for pylab use
+;;(setq py-python-command-args '("-pylab" "--colors" "LightBG"))
+(setq py-python-command-args '("-pylab"))
 
 ;; Add local folder to load-path
 ;; (setq load-path (append load-path (list "~/.emacs_addons")))
