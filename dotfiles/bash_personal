@@ -76,4 +76,8 @@ export IPREFIX=$HOME/usr/local
 
 # git completion
 . $HOME/.git-completion
-PS1='[\u@\h \W$(__git_ps1 " (%s)")] '
+PS1='[\u@\h\W$(__git_ps1 " (%s)")]'
+
+# "\[\033[1;33m\]"
+# "\[\033[1;33m\]"
+# "\[\033[1;33m\]"
