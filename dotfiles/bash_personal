@@ -11,8 +11,12 @@ alias ll='ls -lh'
 #alias la='ls -A'
 #alias l='ls -CF'
 
+alias ipq='ipython-qtconsole --pylab'
+alias ipqi='ipython-qtconsole --pylab inline'
+
 alias ipt='ipython -pylab'
 alias iptn='ipython'
+
 alias matlabn='matlab -nojvm -nosplash'
 alias emacsn='emacs -nw'
 

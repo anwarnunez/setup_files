@@ -1,29 +1,30 @@
-;; Add .emacs.d to the load path
+e;; Add .emacs.d to the load path
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; Contains the R highlighting
-(require 'ess-site) ;; enable R highlighting
 
+;; R mode
+(add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; R highlighting
+(require 'ess-site) ;; 
 
-;; Add local folder to load-path
-;; (setq load-path (append load-path (list "~/.emacs_addons")))
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(ac-config-default)
+
+;; python highlighting
+(require 'ipython)
+(setq py-python-command-args '("--pylab" "--colors" "Linux"))
 
 ;; Set up matlab-mode to load on .m files
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
 (setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
 
-;;to set the coursor to red
+;; Emacs looks
 (set-cursor-color "red")
-;;to set background color to black
 (set-background-color "black")
-;;to set foreground color to white
 (set-foreground-color "white")
 
-;; Set the font type and size
-;; (set-face-attribute 'default nil :font "-schumacher-clean-medium-r-normal--10-100-75-75-c-80-iso646.1991-irv")
-;; (set-face-attribute 'default nil :font "-misc-fixed-medium-r-normal--7-100-75-75-C-65-ISO8859-1")
-;; (set-face-attribute 'default nil :font "MiscFixed-8")
-
+;; face function
 (defun what-face (pos)
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
@@ -31,17 +32,9 @@
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
  '(inverse-video t)
  '(safe-local-variable-values (quote ((py-indent-offset . 4)))))
+;; font
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 86 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
-
