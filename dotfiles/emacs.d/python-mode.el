@@ -102,7 +102,8 @@ regardless of where in the line point is when the TAB command is used."
   :type 'boolean
   :group 'python)
 
-(defcustom py-python-command "python"
+;; (defcustom py-python-command "ipython"
+(defcustom py-python-command "ipython"
   "*Shell command used to start Python interpreter."
   :type 'string
   :group 'python)
