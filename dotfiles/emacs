@@ -26,24 +26,24 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;; (autoload 'python-mode "python-mode" "Python Mode." t)
+;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; --------------------------------------------
 ;; Pnw-mode for Pweave reST documents
 ;; from: http://mpastell.com/pweave/emacs.html
 ;; --------------------------------------------
+;; RST
 (defun Pnw-mode ()
        (require 'noweb-font-lock-mode)
        (noweb-mode)
        (setq noweb-default-code-mode 'python-mode)
        (setq noweb-doc-mode 'rst-mode))
-
 (setq auto-mode-alist (append (list (cons "\\.Pnw$" 'Pnw-mode))
                    auto-mode-alist))
 
-;Plw-mode for Pweave Latex documents
+;; Latex					
 (defun Plw-mode ()
        (require 'noweb-font-lock-mode)
        (noweb-mode)
