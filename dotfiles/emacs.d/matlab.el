@@ -4132,6 +4132,9 @@ desired.  Optional argument FAST is not used."
   :prefix "matlab-shell-"
   :group 'matlab)
 
+;;; ##########################
+;;; Change matlab path here ##
+;;; (defcustom matlab-shell-command "/usr/local/MATLAB/R2010b/bin/matlab"
 (defcustom matlab-shell-command "matlab"
   "*The name of the command to be run which will start the MATLAB process."
   :group 'matlab-shell
