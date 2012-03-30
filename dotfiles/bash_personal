@@ -21,6 +21,33 @@ alias matlabn='matlab -nojvm -nosplash'
 alias emacsn='emacs -nw'
 
 
+##############################
+# Setup the intel suite
+##############################
+
+# The Intel C Compiler
+source /opt/intel/composer_xe_2011_sp1.7.256/bin/iccvars.sh intel64
+# The Intel MKL library
+source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/mklvars.sh intel64
+# The Intel Fortran compiler
+source /opt/intel/composer_xe_2011_sp1.9.293/bin/compilervars.sh intel64
+# --- or maybe: source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/intel64/
+
+# ----NUMPY Install
+# python setup.py config --compiler=intelem build_clib --compiler=intelem build_ext --compiler=intelem install
+# ----Scipy Install
+# python setup.py config --compiler=intelem --fcompiler=intelem build_clib --compiler=intelem --fcompiler=intelem build_ext --compiler=intelem --fcompiler=intelem install
+
+# Add the Intel libraries to the path
+export LD_LIBRARY_PATH=/opt/intel/composer_xe_2011_sp1.7.256/mkl/lib/intel64:/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64:$LD_LIBRARY_PATH
+
+##############################
+# Setup local built R
+##############################
+
+# Add the R libraries (from the build) to use with RPy
+export LD_LIBRARY_PATH=/usr/local/lib/R/lib:$LD_LIBRARY_PATH
+
 # update ubuntu
 alias apt-up='sudo apt-get update;sudo apt-get -y --force-yes dselect-upgrade'
 
