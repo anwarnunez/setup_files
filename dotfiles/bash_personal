@@ -11,6 +11,7 @@ alias ll='ls -lh'
 #alias la='ls -A'
 #alias l='ls -CF'
 
+alias texupdate='texhash'
 alias ipq='ipython-qtconsole --pylab'
 alias ipqi='ipython-qtconsole --pylab inline'
 
