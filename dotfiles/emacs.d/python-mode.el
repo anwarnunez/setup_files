@@ -641,6 +641,7 @@ Currently-active file is at the head of the list.")
   (define-key py-mode-map "\C-c\C-m"  'py-execute-import-or-reload)
   (define-key py-mode-map "\C-c\C-s"  'py-execute-string)
   (define-key py-mode-map "\C-c|"     'py-execute-region)
+  (define-key py-mode-map "\C-c\C-r"  'py-execute-region)
   (define-key py-mode-map "\e\C-x"    'py-execute-def-or-class)
   (define-key py-mode-map "\C-c!"     'py-shell)
   (define-key py-mode-map "\C-c\C-t"  'py-toggle-shells)
@@ -1348,18 +1349,19 @@ Make that process's buffer visible and force display.  Also make
 comint believe the user typed this string so that
 `kill-output-from-shell' does The Right Thing."
   (let ((curbuf (current-buffer))
-        (procbuf (process-buffer proc))
+        ;; (procbuf (process-buffer proc))
 ;       (comint-scroll-to-bottom-on-output t)
         (msg (format "## working on region in file %s...\n" filename))
         ;; add some comment, so that we can filter it out of history
         (cmd (format "execfile(r'%s') # PYTHON-MODE\n" filename)))
-    (unwind-protect
-        (save-excursion
-          (set-buffer procbuf)
-          (goto-char (point-max))
-          (move-marker (process-mark proc) (point))
-          (funcall (process-filter proc) proc msg))
-      (set-buffer curbuf))
+    ;; DISABLE SCREEN SWITCH AFTER SENDING TO PYTHON 
+    ;; (unwind-protect
+    ;;     (save-excursion
+    ;;       (set-buffer procbuf)
+    ;;       (goto-char (point-max))
+    ;;       (move-marker (process-mark proc) (point))
+    ;;       (funcall (process-filter proc) proc msg))
+    ;;   (set-buffer curbuf))
     (process-send-string proc cmd)))
 
 (defun py-comint-output-filter-function (string)

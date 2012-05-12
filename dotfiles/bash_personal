@@ -5,15 +5,15 @@
 #         . ~/.bash_personal
 # fi
 
+
 ############################################################################
 # some more ls aliases
 alias ll='ls -lh'
 #alias la='ls -A'
 #alias l='ls -CF'
 
-alias texupdate='texhash'
-alias ipq='ipython-qtconsole --pylab'
-alias ipqi='ipython-qtconsole --pylab inline'
+alias ipq='ipython qtconsole --style=ipython -pylab'
+alias ipqi='ipython qtconsole --style=ipython -pylab inline'
 
 alias ipt='ipython -pylab'
 alias iptn='ipython'
@@ -21,17 +21,31 @@ alias iptn='ipython'
 alias matlabn='matlab -nojvm -nosplash'
 alias emacsn='emacs -nw'
 
+##############################
+# Setup zeromq for ipython qt
+##############################
+# git clone https://github.com/zeromq/zeromq2-x.git
+# sudo apt-get install libtool
+# sudo apt-get install uuid-dev
+
+# ./autogen.sh
+# ./configure
+# make
+# sudo make install
+
+# git clone https://github.com/zeromq/pyzmq.git
+# sudo python setup.py install
 
 ##############################
 # Setup the intel suite
 ##############################
 
 # The Intel C Compiler
-source /opt/intel/composer_xe_2011_sp1.7.256/bin/iccvars.sh intel64
+# source /opt/intel/composer_xe_2011_sp1.7.256/bin/iccvars.sh intel64
 # The Intel MKL library
-source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/mklvars.sh intel64
+#source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/mklvars.sh intel64
 # The Intel Fortran compiler
-source /opt/intel/composer_xe_2011_sp1.9.293/bin/compilervars.sh intel64
+#source /opt/intel/composer_xe_2011_sp1.9.293/bin/compilervars.sh intel64
 # --- or maybe: source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/intel64/
 
 # ----NUMPY Install
@@ -40,7 +54,7 @@ source /opt/intel/composer_xe_2011_sp1.9.293/bin/compilervars.sh intel64
 # python setup.py config --compiler=intelem --fcompiler=intelem build_clib --compiler=intelem --fcompiler=intelem build_ext --compiler=intelem --fcompiler=intelem install
 
 # Add the Intel libraries to the path
-export LD_LIBRARY_PATH=/opt/intel/composer_xe_2011_sp1.7.256/mkl/lib/intel64:/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/opt/intel/composer_xe_2011_sp1.7.256/mkl/lib/intel64:/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64:$LD_LIBRARY_PATH
 
 ##############################
 # Setup local built R

@@ -36,7 +36,7 @@
 ;; always in ``pylab`` mode with hardcoded light-background colors, you can
 ;; use::
 ;;
-;; (setq py-python-command-args '("-pylab" "--colors" "LightBG"))
+;; (setq py-python-command-args '("qtconsole")) ;; -pylab" "--colors" "LightBG"))
 ;;
 ;;
 ;; NOTE: This mode is currently somewhat alpha and although I hope that it
@@ -310,6 +310,54 @@ gets converted to:
       (goto-char start)
       (while (re-search-forward ipython-de-output-prompt-regexp end t)
         (replace-match "" t nil)))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; This to make it less annoying to type the above
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun ipt2doc (start end)
+  "Transform a cut-and-pasted bit from an IPython session into something that
+looks like it came from a normal interactive python session, so that it can
+be used in doctests. Example:
+
+
+    In [1]: import sys
+
+    In [2]: sys.stdout.write 'Hi!\n'
+    ------> sys.stdout.write ('Hi!\n')
+    Hi!
+
+    In [3]: 3 + 4
+    Out[3]: 7
+
+gets converted to:
+
+    >>> import sys
+    >>> sys.stdout.write ('Hi!\n')
+    Hi!
+    >>> 3 + 4
+    7
+
+"
+  (interactive "*r\n")
+  ;(message (format "###DEBUG s:%de:%d" start end))
+  (save-excursion
+    (save-match-data
+      ;; replace ``In [3]: bla`` with ``>>> bla`` and
+      ;;         ``... :   bla`` with ``...    bla``
+      (goto-char start)
+      (while (re-search-forward ipython-de-input-prompt-regexp end t)
+        ;(message "finding 1")
+        (cond ((match-string 3)         ;continued
+               (replace-match "... \\3" t nil))
+              (t
+               (replace-match ">>> \\1\\2" t nil))))
+      ;; replace ``
+      (goto-char start)
+      (while (re-search-forward ipython-de-output-prompt-regexp end t)
+        (replace-match "" t nil)))))
+
 
 (defvar ipython-completion-command-string
   "print(';'.join(get_ipython().Completer.all_completions('%s'))) #PYTHON-MODE SILENT\n"
