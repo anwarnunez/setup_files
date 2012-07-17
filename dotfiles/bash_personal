@@ -21,6 +21,8 @@ alias iptn='ipython'
 alias matlabn='matlab -nojvm -nosplash'
 alias emacsn='emacs -nw'
 
+alias texbuild='pdflatex --shell-escape --interaction=nonstopmode'
+
 ##############################
 # Setup zeromq for ipython qt
 ##############################

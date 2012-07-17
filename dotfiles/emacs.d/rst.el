@@ -543,13 +543,13 @@ decorations."
   :version "21.1")
 
 (defcustom rst-preferred-decorations '( (?= over-and-under 1)
-                                         (?= simple 0)
-                                         (?- simple 0)
-                                         (?~ simple 0)
-                                         (?+ simple 0)
-                                         (?` simple 0)
-                                         (?# simple 0)
-                                         (?@ simple 0) )
+					(?= simple 0)
+					(?- simple 0)
+					(?* simple 0)
+					(?# simple 0)
+					(?` simple 0)
+					(?+ simple 0)
+					(?@ simple 0) )
   "Preferred ordering of section title decorations.
 
 This sequence is consulted to offer a new decoration suggestion
@@ -2682,7 +2682,7 @@ faces."
   :group 'rst-faces-defaults
   :type '(integer)
   :set 'rst-set-level-default)
-(defcustom rst-level-face-base-color "grey"
+(defcustom rst-level-face-base-color nil ;; "grey"
   "The base name of the color to be used for creating background colors in
 ection title faces for all levels."
   :group 'rst-faces-defaults
