@@ -56,7 +56,7 @@ class PrettyStyle(Style):
         String.Regex:              "#235388",
         String.Symbol:             "#517918",
         String.Other:              "#c65d09",
-        Number:                    "#92149E",
+        Number:                    "#9370DB",
 
         Generic.Heading:           "bold #000080",
         Generic.Subheading:        "bold #800080",
