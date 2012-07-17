@@ -44,11 +44,18 @@
 ;; (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 
+;; RST MODE
+(setq auto-mode-alist
+      (append '(("\\.txt\\'" . rst-mode)
+                ("\\.rst\\'" . rst-mode)
+                ("\\.rest\\'" . rst-mode)) auto-mode-alist))
+
+
 ;; --------------------------------------------
 ;; Pnw-mode for Pweave reST documents
 ;; from: http://mpastell.com/pweave/emacs.html
 ;; --------------------------------------------
-;; RST
+;; 
 (defun Pnw-mode ()
        (require 'noweb-font-lock-mode)
        (noweb-mode)
