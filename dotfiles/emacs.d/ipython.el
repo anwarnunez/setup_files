@@ -140,7 +140,7 @@
   :group 'python)
 
 ;; Users can set this to nil
-(defvar py-shell-initial-switch-buffers t
+(defvar py-shell-initial-switch-buffers nil ;; t
   "If nil, don't switch to the *Python* buffer on the first call to
   `py-shell'.")
 
@@ -248,9 +248,9 @@ buffer already exists."
             (or (getenv "PYTHONHISTORY") "~/.python-history.py")))
     (comint-read-input-ring t)
     (let ((buf (current-buffer)))
-      ad-do-it
+      ad-do-it)
       (unless py-shell-initial-switch-buffers
-        (switch-to-buffer-other-window buf)))))
+        (switch-to-buffer-other-window buf))))
 (ad-activate 'py-shell)
 ;; (defadvice py-execute-region (before py-execute-buffer-ensure-process)
 ;;   "HACK: test that ipython is already running before executing something.
