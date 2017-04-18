@@ -3,7 +3,7 @@
 
 ;; R mode
 (add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; R highlighting
-(require 'ess-site) ;; 
+(require 'ess-site) ;;
 
 ;; python docstrings
 ;; (add-to-list 'load-path "~/.emacs.d/mmm-mode")
@@ -25,7 +25,7 @@
 ;; (add-to-list 'load-path "~/.emacs.d/ipython-notebook") ;; ipython notebook
 ;; (require 'ein)
 
-;; ----------- 
+;; -----------
 ;; python mode
 ;; -----------
 ;; (require 'python)
@@ -60,7 +60,7 @@
       1 font-lock-keyword-face t))))
 
 
-  
+
 ;; --------------------
 ;; auto-complete setup
 ;; --------------------
@@ -89,9 +89,19 @@
        (setq noweb-default-code-mode 'python-mode)
        (setq noweb-doc-mode 'rst-mode))
 (setq auto-mode-alist (append (list (cons "\\.Pnw$" 'Pnw-mode))
-                   auto-mode-alist))
+		   auto-mode-alist))
 
-;; Latex					
+
+(defun ppy-mode ()
+       (require 'noweb-font-lock-mode)
+       (noweb-mode)
+       (setq noweb-default-code-mode 'python-mode)
+       (setq noweb-doc-mode 'python-mode))
+(setq auto-mode-alist (append (list (cons "\\.ppy$" 'ppy-mode))
+		   auto-mode-alist))
+
+
+;; Latex
 (defun Plw-mode ()
        (require 'noweb-font-lock-mode)
        (noweb-mode)
@@ -99,11 +109,11 @@
        (setq noweb-doc-mode 'latex-mode))
 
 (setq auto-mode-alist (append (list (cons "\\.Plw$" 'Plw-mode))
-                   auto-mode-alist))
+		   auto-mode-alist))
 
-;; ----------- 
+;; -----------
 ;; matlab mode
-;; ----------- 
+;; -----------
 ;; Set up matlab-mode to load on .m files
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
 (setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
@@ -113,7 +123,7 @@
 (defun what-face (pos)
   (interactive "d")
   (let ((face (or (get-char-property (point) 'read-face-name)
-                  (get-char-property (point) 'face))))
+		  (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
 
@@ -128,7 +138,7 @@
    ((car delete-these)
     (if (member (car delete-these) from-this-list)
 	(crs-delete-these (cdr delete-these) (delete (car delete-these)
-                                                     from-this-list))
+						     from-this-list))
       (crs-delete-these (cdr delete-these) from-this-list)))
    (t from-this-list)))
 
@@ -213,7 +223,8 @@
  '(doc-view-continuous t)
  '(inhibit-startup-screen t)
  '(inverse-video t)
- '(safe-local-variable-values (quote ((py-indent-offset . 4)))))
+ '(safe-local-variable-values (quote ((py-indent-offset . 4))))
+ '(send-mail-function (quote smtpmail-send-it)))
 
 ;; font
 ;; (custom-set-faces
@@ -228,4 +239,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "PfEd" :family "DejaVu Sans Mono")))))
+
+(add-hook 'before-save-hook 'whitespace-cleanup)
