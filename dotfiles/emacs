@@ -3,7 +3,7 @@
 
 ;; R mode
 (add-to-list 'load-path "~/.emacs.d/ess-5.11/lisp") ;; R highlighting
-(require 'ess-site) ;;
+;; (require 'ess-site) ;;
 
 ;; python docstrings
 ;; (add-to-list 'load-path "~/.emacs.d/mmm-mode")
@@ -30,7 +30,7 @@
 ;; -----------
 ;; (require 'python)
 (require 'ipython)
-(setq py-python-command-args '("--pylab" "--colors" "Linux"))
+(setq py-python-command-args '("--pylab" "--simple-prompt" "--colors" "Linux"))
 ;; (setq py-python-command-args '("--pylab" "--colors" "Linux"))
 
 ;; (setq py-install-directory "~/.emacs.d/python-mode")
@@ -226,7 +226,7 @@
  '(safe-local-variable-values (quote ((py-indent-offset . 4))))
  '(send-mail-function (quote smtpmail-send-it)))
 
-;; font
+;; ;; font
 ;; (custom-set-faces
 ;;   ;; custom-set-faces was added by Custom.
 ;;   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -240,5 +240,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "PfEd" :family "DejaVu Sans Mono")))))
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 143 :width normal :foundry "PfEd" :family "DejaVu Sans")))))
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
