@@ -1,5 +1,7 @@
 # -*- sh -*-  Personal bash settings
-# Put this at the end of your .bashrc or .bash_profile file
+
+
+# # Put this at the end of your .bashrc or .bash_profile file
 # # Source personal definitions
 # if [ -f ~/.bash_personal ]; then
 #         . ~/.bash_personal
