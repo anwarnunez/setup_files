@@ -1,7 +1,7 @@
 # Makefile to do stuff with configurations
 
 DOTBACKUP = $(HOME)/.backup_dotfiles
-DOTFILES = bash_personal bash_utils gitconfig noserc gnomerc hgrc git-completion vimrc emacs emacs.d
+DOTFILES = bash_personal bash_utils gitconfig noserc gnomerc hgrc git-completion vimrc emacs emacs.d openconnect_wrapper.sh
 #VENV_DIR = $(HOME)/.virtualenvs
 #VIM_DIR = $(HOME)/.vim
 
