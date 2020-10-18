@@ -11,8 +11,12 @@
 ############################################################################
 # some more ls aliases
 alias ll='ls -lh'
+alias lll='ls -lhatr'
+
 alias la='ls -A'
 alias l='ls -CF'
+
+alias uclvpn="sudo openconnect vpn.ucl.ac.uk --csd-wrapper=~/openconnect_wrapper.sh"
 
 alias ipq='ipython qtconsole --style=ipython --pylab'
 alias ipqi='ipython qtconsole --style=ipython --pylab inline'
