@@ -1,7 +1,5 @@
 # -*- sh -*-  Personal bash settings
-
-
-# # Put this at the end of your .bashrc or .bash_profile file
+# Put this at the end of your .bashrc or .bash_profile file
 # # Source personal definitions
 # if [ -f ~/.bash_personal ]; then
 #         . ~/.bash_personal
@@ -9,25 +7,42 @@
 
 
 ############################################################################
-# some more ls aliases
-alias ll='ls -lh'
-alias lll='ls -lhatr'
 
+
+# Useful aliases
+alias ll='ls -lh'
 alias la='ls -A'
 alias l='ls -CF'
+alias lll='ls -ltrh'
+alias unmount='umount -a -t cifs -l'
 
-alias uclvpn="sudo openconnect vpn.ucl.ac.uk --csd-wrapper=~/openconnect_wrapper.sh"
-
+# IPython
 alias ipq='ipython qtconsole --style=ipython --pylab'
 alias ipqi='ipython qtconsole --style=ipython --pylab inline'
-
 alias ipt='ipython -pylab'
 alias iptn='ipython'
 
+# onedrive
+# https://github.com/skilion/onedrive
+alias onedrive_restart='systemctl --user restart onedrive'
+alias onedrive_stop='systemctl --user stop onedrive'
+alias onedrive_view='journalctl --user-unit onedrive -f'
+
+# UCL VPN
+alias uclvpn="sudo openconnect vpn.ucl.ac.uk --csd-wrapper=~/openconnect_wrapper.sh"
+
+# Software
+alias fiji=$HOME'/src/Fiji.app/ImageJ-linux64'
 alias matlabn='matlab -nojvm -nosplash'
 alias emacsn='emacs -nw'
-
 alias texbuild='pdflatex --shell-escape --interaction=nonstopmode'
+
+# alignment software
+export FREESURFER_HOME='/opt/freesurfer'
+alias load_freesurfer='source /opt/freesurfer/FreeSurferEnv.sh'
+alias load_fsl='source /etc/fsl/fsl.sh'
+export PATH=${PATH}:$HOME/'repos/elastixbuild'
+
 
 ##############################
 # Setup zeromq for ipython qt
@@ -44,22 +59,23 @@ alias texbuild='pdflatex --shell-escape --interaction=nonstopmode'
 # git clone https://github.com/zeromq/pyzmq.git
 # sudo python setup.py install
 
-##############################
-# Setup the intel suite
-##############################
 
-# The Intel C Compiler
-# source /opt/intel/composer_xe_2011_sp1.7.256/bin/iccvars.sh intel64
-# The Intel MKL library
-#source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/mklvars.sh intel64
-# The Intel Fortran compiler
-#source /opt/intel/composer_xe_2011_sp1.9.293/bin/compilervars.sh intel64
-# --- or maybe: source /opt/intel/composer_xe_2011_sp1.7.256/mkl/bin/intel64/
 
-# ----NUMPY Install
-# python setup.py config --compiler=intelem build_clib --compiler=intelem build_ext --compiler=intelem install
+##############################
+# MKL Build: Nov 2020
+##############################
+# parallel studio
+source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh intel64
+# https://software.intel.com/content/www/us/en/develop/articles/build-numpy-with-mkl-and-icc.html
+#
+# ----NUMPY INSTALL from source
+# git clean -xfd # clean repo
+# create site.cfg
+# sudo su
+# source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh intel64
+# python3 setup.py config --compiler=intelem build_clib --compiler=intelem build_ext --compiler=intelem install
 # ----Scipy Install
-# python setup.py config --compiler=intelem --fcompiler=intelem build_clib --compiler=intelem --fcompiler=intelem build_ext --compiler=intelem --fcompiler=intelem install
+# python3 setup.py config --compiler=intelem --fcompiler=intelem build_clib --compiler=intelem --fcompiler=intelem build_ext --compiler=intelem --fcompiler=intelem install
 
 # Add the Intel libraries to the path
 #export LD_LIBRARY_PATH=/opt/intel/composer_xe_2011_sp1.7.256/mkl/lib/intel64:/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64:$LD_LIBRARY_PATH
@@ -130,4 +146,4 @@ export IPREFIX=$HOME/usr/local
 
 # git completion
 . $HOME/.git-completion
-PS1='[\[\033[1;30m\]\u\[\033[1;31m\]@\h \[\033[1;34m\]\W\[\033[1;33m\]$(__git_ps1 " (%s)")\[\033[0m\]] '
+PS1='[\[\033[1;30m\]\u\[\033[1;31m\]@\h \[\033[1;34m\]\w\[\033[1;33m\]$(__git_ps1 " (%s)")\[\033[0m\]] '
