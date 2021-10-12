@@ -5,7 +5,7 @@
 	email = anwarnunez@gmail.com
 [alias]
 	st = status
-        stat = status
+	stat = status -uno
 	co = checkout
 [color]
 	diff = auto
