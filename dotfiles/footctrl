@@ -5,20 +5,20 @@ Foot pedal controller.
 Written by James Gao
 Modified by Anwar Nunez-Elizalde
 '''
+import time
 import serial
 import uinput
+from functools import reduce
 
-# emacs: execute py2
-# sequence_left = [uinput.KEY_RIGHTALT, uinput.KEY_C, uinput.KEY_RIGHTALT, uinput.KEY_RIGHTSHIFT, uinput.KEY_1]
-# TAB windows
-# sequence_left = [uinput.KEY_RIGHTALT, uinput.KEY_TAB]
-sequence_left = [uinput.KEY_RIGHTALT, uinput.KEY_X, uinput.KEY_RIGHTALT, uinput.KEY_S]
 # emacs: execute code for py3
-sequence_right = [uinput.KEY_RIGHTALT, uinput.KEY_C, uinput.KEY_RIGHTALT, uinput.KEY_R]
-keys = sequence_left + sequence_right
+sequence_left = [[uinput.KEY_RIGHTALT, uinput.KEY_X, uinput.KEY_RIGHTALT, uinput.KEY_S],  # Save file
+                 ]
+
+sequence_right = [[uinput.KEY_RIGHTALT, uinput.KEY_ENTER], # Execute code
+                  ]
+
 combos = [sequence_left, sequence_right]
-
-
+keys = reduce(lambda x, y: x+y, sequence_left + sequence_right)
 print('Started foot controller!')
 
 def main(port="/dev/ttyUSB0"):
@@ -31,8 +31,10 @@ def main(port="/dev/ttyUSB0"):
                 is_key_press = int(state[0])
                 if not is_key_press:
                     continue
-                sequence = combos[lr]
-                dev.emit_combo(sequence)
+                sequences = combos[lr]
+                for sequence in sequences:
+                    time.sleep(0.2)
+                    dev.emit_combo(sequence)
 
             except KeyboardInterrupt:
                 run = False
