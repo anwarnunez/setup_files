@@ -12,6 +12,21 @@
 (require 'code-cells)
 (global-set-key (kbd "C-<return>") 'code-cells-eval)
 
+(require 'code-cells)
+(global-set-key (kbd "C-<return>") 'code-cells-eval)
+(global-set-key (kbd "M-n") 'code-cells-forward-cell)
+(global-set-key (kbd "M-p") 'code-cells-backward-cell)
+
+;; set focus to Python terminal
+(global-set-key (kbd "<f5>") (lambda ()
+			       (interactive)
+			       (run-python)
+			       (switch-to-buffer-other-frame "*Python*")))
+
+;; Auto-generate docstrings from function signature
+(require 'numpydoc)
+(global-set-key (kbd "C-c d") 'numpydoc-generate)
+
 ;; py-execute-region
 ;; line-move-visual
 ;;;; `Cython' mode.
@@ -27,6 +42,7 @@
 	       "\\|object\\|public\\|struct\\|type\\|union\\|void"
 	       "\\)\\>")
       1 font-lock-keyword-face t))))
+
 
 
 
