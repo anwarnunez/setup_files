@@ -357,9 +357,9 @@ This function assumes the cursor to be in the function body."
 	(tmpl (cond ((numpydoc--yas-p) numpydoc--yas-replace-pat)
 		    (t numpydoc-template-long))))
     (insert "\n")
+    (numpydoc--insert indent (concat (make-string 3 numpydoc-quote-char) "\n"))
     (numpydoc--insert indent
-		      (concat (make-string 3 numpydoc-quote-char)
-			      (if (numpydoc--prompt-p)
+		      (concat (if (numpydoc--prompt-p)
 				  (read-string
 				   (format "Short description: "))
 				tmps)
@@ -385,7 +385,7 @@ This function assumes the cursor to be in the function body."
   "Insert parameter with NAME and TYPE at level INDENT."
   (numpydoc--insert indent
 		    (if type
-			(format "%s : %s\n" name type)
+			(format "%s: %s\n" name type)
 		      (format "%s\n" name))))
 
 (defun numpydoc--insert-item-and-type (indent name type)
@@ -400,7 +400,7 @@ This function assumes the cursor to be in the function body."
 			 (read-string (format "Type of %s: "
 					      name))
 		       tmpt)))
-	  (numpydoc--insert indent (format "%s : %s\n" name tp)))
+	  (numpydoc--insert indent (format "%s: %s\n" name tp)))
       (numpydoc--insert-item indent name))))
 
 (defun numpydoc--insert-item-desc (indent element)
@@ -414,7 +414,7 @@ This function assumes the cursor to be in the function body."
 			tmpd))))
     (numpydoc--insert indent desc)
     (numpydoc--fill-last-insertion)
-    (insert "\n")))
+    (insert "\n\n")))
 
 (defun numpydoc--insert-parameters (indent fnargs)
   "Insert FNARGS (function arguments) at INDENT level."
@@ -428,7 +428,10 @@ This function assumes the cursor to be in the function body."
 				      (numpydoc--arg-name element)
 				      (numpydoc--arg-type element))
       (numpydoc--insert-item-desc indent
-				  (numpydoc--arg-name element)))))
+				  (numpydoc--arg-name element)))
+    (numpydoc--insert indent
+		      "Modifies\n"
+		      "--------\n")))
 
 (defun numpydoc--insert-return (indent fnret)
   "Insert FNRET (return) description (if exists) at INDENT level."
@@ -438,16 +441,16 @@ This function assumes the cursor to be in the function body."
       (insert "\n")
       (numpydoc--insert indent
 			"Returns\n"
-			"-------\n"
-			fnret)
+			"-------\n")
+      (numpydoc--insert indent (concat "[retvar]: " fnret))
       (insert "\n")
       (numpydoc--insert indent
 			(concat (make-string 4 ?\s)
 				(if (numpydoc--prompt-p)
 				    (read-string "Description for return: ")
 				  tmpr)))
-      (numpydoc--fill-last-insertion)
-      (insert "\n"))))
+      (numpydoc--fill-last-insertion))))
+;; (insert "\n"))))
 
 (defun numpydoc--insert-exceptions (indent fnexcepts)
   "Insert FNEXCEPTS (exception) elements at INDENT level."
